@@ -71,7 +71,69 @@ This will grab the key from the preference file and assign it to `static bool en
 
 Now that we have a boolean inside our Tweak.xm, all we need to do is test if it is enabled.
 
-### 4. Setting up our constructor and using the enable bool
+### 4. Setting up our constructor and using the enable boolean
 
+Now we must setup our constructor, which as special logos block that we can use to call our loadPrefs() method.
+
+Add this anywhere in your tweak
+
+```objective-c
+%ctor {
+
+  CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), 
+  NULL, (CFNotificationCallback)loadPrefs, CFSTR("com.mtac.cpxiprefs/settingschanged"), 
+  NULL, CFNotificationSuspensionBehaviorCoalesce);
+  loadPrefs();
+
+}
+```
+
+Now our enabled key is ready to use. 
+
+### 5. Enabling/Disabling our Tweak.
+
+To use our enabled key, simply use an if statement to test if it is set to YES
+
+```objective-c
+@interface SBUIPasscodeLockViewWithKeypad
+
+@property (nonatomic,retain) UILabel * statusTitleView;
+
+@end
+
+%hook SBUIPasscodeLockViewWithKeypad
+
+- (id)statusTitleView {
+
+  if (enabled == YES) {
+
+    if (showTitle == YES) {
+
+      UILabel *label = MSHookIvar<UILabel *>(self, "_statusTitleView");
+
+      label.text = @"";
+
+      return label;
+
+    } else {
+
+      return %orig;
+
+    }
+
+  } else {
+
+    return %orig;
+
+  }
+
+}
+
+%end
+```
+
+You can see here, inside our %hook block, I test if enabled is equal to YES. If it is, the tweak uses MSHookIvar to grab the UILabel ivar, and change the text to "". Make sure to add else {} statements, as if enabled is equal to NO, you want to run %orig. %orig calls whatever was there by default, not adding this might cause problems.
+
+Preference keys can be of any type. This uses `[[prefs objectForKey":@"key"] boolValue]` as its testing for YES/NO. Different types can be used, such as boolValue, stringValue, intValue, floatValue...
 
 
