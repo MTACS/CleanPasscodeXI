@@ -22,6 +22,16 @@ Next, it will ask for a class name prefix. This is just an identifier Theos uses
 
 ![alt text](https://github.com/MTACS/CleanPasscodeXI/blob/master/images/2.png "")
 
-### 3. 
+### 3. Open your main tweak project folder in an editor of your choice. I am using Visual Studio Code, as I find it provides the best syntax highlighting for Objective-C but many editors have the same function.
+
+This will show how to add a simple Enable switch to your tweak.
+
+Open your Tweak.xm file, and add the following to the top
+
+```objective-c
+static bool enabled = NO;
+```
+
+![alt text](https://github.com/MTACS/CleanPasscodeXI/blob/master/images/3.png "")
 
 
