@@ -182,4 +182,4 @@ All you have to do now is run
 make package install
 ```
 
-# If you find anything wrong with this writeup, make a pull request with the required changes or contact me on twitter @MTAC8
+## If you find anything wrong with this writeup, make a pull request with the required changes or contact me on twitter @MTAC8
