@@ -134,6 +134,27 @@ To use our enabled key, simply use an if statement to test if it is set to YES
 
 You can see here, inside our %hook block, I test if enabled is equal to YES. If it is, the tweak uses MSHookIvar to grab the UILabel ivar, and change the text to "". Make sure to add else {} statements, as if enabled is equal to NO, you want to run %orig. %orig calls whatever was there by default, not adding this might cause problems.
 
-Preference keys can be of any type. This uses `[[prefs objectForKey":@"key"] boolValue]` as its testing for YES/NO. Different types can be used, such as boolValue, stringValue, intValue, floatValue...
+Preference keys can be of any type. This uses `[[prefs objectForKey":@"key"] boolValue]` as it's testing for YES/NO. Different types can be used, such as boolValue, stringValue, intValue, floatValue...
 
+### 6. Editing our Root.plist to change what's displayed in the Settings pane.
 
+By default, Theos generates a key called Awesome Switch 1, inside Tweak > tweakprefs > Resources > Root.plist.
+
+Open this plist and add the following between `<array>` and `</array>`
+
+```xml
+<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.mtac.cpxiprefs</string>
+			<key>PostNotification</key>
+			<string>com.mtac.cpxiprefs/settingsupdated</string>
+			<key>key</key>
+			<string>enabled</string>
+			<key>label</key>
+			<string>Enable Tweak</string>
+</dict>
+```
