@@ -31,7 +31,27 @@ Open your Tweak.xm file, and add the following to the top
 ```objective-c
 static bool enabled = NO;
 ```
+Next create a static function called loadPrefs()
 
-![alt text](https://github.com/MTACS/CleanPasscodeXI/blob/master/images/3.png "")
+```objective-c
+static void loadPrefs() {
+
+}
+```
+
+Inside this function, we need to create a NSMutableDictionary which will load from our tweak's preference file
+
+```objective-c
+static void loadPrefs() {
+
+  NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:[NSHomeDirectory() stringByAppendingPathComponent:@"/Library/PreferenceBundles/com.yourname.tweakprefs.plist"]];
+
+}
+```
+
+Replace com.yourname.tweakprefs.plist with the tweak's bundle identifier from Step 2. Make sure it's the id of the preferences and not the tweak itself.
+
+
+
 
 
