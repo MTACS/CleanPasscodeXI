@@ -6,11 +6,11 @@ This tweak hides the annoying buttons on the passcode entry screen of iOS. It su
 
 The source code of the tweak is [here](https://github.com/MTACS/CleanPasscodeXI/blob/master/Tweak.xm), but the point of this writeup is how to add preferences to an existing tweak
 
-## 1. Change directory to the path of your tweak and run $THEOS/bin/nic.pl to create a new instance
+### 1. Change directory to the path of your tweak and run $THEOS/bin/nic.pl to create a new instance
 
-![alt text]( "")
+![alt text](https://github.com/MTACS/CleanPasscodeXI/blob/master/images/1.png "")
 
-## 2. Select the number that corresponds with "iphone/preference_bundle_modern"
+### 2. Select the number that corresponds with "iphone/preference_bundle_modern"
 
 For project name, add something that relates to the name of the main tweak. For CleanPasscodeXI I used cpxiprefs.
 
@@ -20,8 +20,8 @@ Enter a name for the author.
 
 Next, it will ask for a class name prefix. This is just an identifier Theos uses on the front of your main preference controller .m and .h files.
 
-![alt text]( "")
+![alt text](https://github.com/MTACS/CleanPasscodeXI/blob/master/images/2.png "")
 
-## 3. 
+### 3. 
 
 
