@@ -158,3 +158,26 @@ Open this plist and add the following between `<array>` and `</array>`
 			<string>Enable Tweak</string>
 </dict>
 ```
+
+Under `<key>` change the `<string>` to "enabled". This is the key that loadPrefs() uses.
+
+Also add the following to the XML block
+
+```xml
+<key>PostNotification</key>
+<string>com.mtac.cpxiprefs/settingsupdated</string>
+```
+
+This calls preference's notifier to change the value inside the .plist
+
+Change com.mtac.cpxiprefs to the same identifier you used for your preference bundle
+
+### 7. Build your tweak
+
+There are endless options for the types of PSCells, for more information check the source code of this tweak
+
+All you have to do now is run
+
+```bash
+make package install
+```
