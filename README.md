@@ -51,7 +51,27 @@ static void loadPrefs() {
 
 Replace com.yourname.tweakprefs.plist with the tweak's bundle identifier from Step 2. Make sure it's the id of the preferences and not the tweak itself.
 
+Next, we need to grab the key of enable switch. Add the following inside the loadPrefs() method's brackets
 
+```objective-c
+static void loadPrefs() {
+
+  NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:[NSHomeDirectory() stringByAppendingPathComponent:@"/Library/PreferenceBundles/com.yourname.tweakprefs.plist"]];
+  
+if (prefs) {
+  
+    enabled = [prefs objectForKey:@"enabled"] ? [[prefs objectForKey:@"enabled"] boolValue] : enabled;
+    
+  }
+
+}
+```
+
+This will grab the key from the preference file and assign it to `static bool enabled` 
+
+Now that we have a boolean inside our Tweak.xm, all we need to do is test if it is enabled.
+
+### 4. Setting up our constructor and using the enable bool
 
 
 
